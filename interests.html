@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Interests — Your Name</title>
+  <link rel="icon" href="favicon.ico"/>
+  <style>:root{--text:#1b1c1d;--bg-1:#f2f6f9;--bg-2:#b6bcc2;--muted:#616970;--accent:#3e464e;--panel:#ffffff}*{box-sizing:border-box}html,body{height:100%}body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:var(--text);background:linear-gradient(180deg,var(--bg-1),var(--bg-2));-webkit-font-smoothing:antialiased} .wrap{max-width:980px;margin:0 auto;padding:24px;background:transparent} header{display:flex;justify-content:space-between;align-items:center;padding-top:18px;padding-bottom:8px;position:relative} nav{position:absolute;right:24px;top:64px;display:flex;flex-direction:column;gap:6px;align-items:stretch;z-index:60;width:220px;max-height:0;opacity:0;overflow:hidden;padding:0;border-radius:12px;transition:all .28s cubic-bezier(.2,.9,.2,1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:linear-gradient(180deg, rgba(255,255,255,0.78), rgba(255,255,255,0.62));border:1px solid rgba(255,255,255,0.6);box-shadow:0 12px 36px rgba(27,28,29,0.06), inset 0 1px 0 rgba(255,255,255,0.6)}nav.open{max-height:420px;opacity:1;padding:10px}nav a{display:block;color:var(--muted);text-decoration:none;margin:0;padding:10px 12px;border-radius:8px;position:relative}nav a span{position:relative;display:inline-block}nav a span::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;background:var(--accent);width:0;transition:width .22s ease}nav a:hover span::after, nav a:focus span::after{width:100%}nav a:hover{background:rgba(27,28,29,0.02);box-shadow:0 8px 24px rgba(27,28,29,0.06)}#menu-btn{display:inline-flex;gap:8px;align-items:center;border:0;background:var(--accent);color:var(--panel);padding:6px 10px;border-radius:8px;cursor:pointer;font-weight:700}#menu-btn svg{color:var(--panel);transition:transform .28s cubic-bezier(.2,.9,.2,1)}#menu-btn.active svg, #menu-btn[aria-expanded="true"] svg{transform:rotate(180deg)} main{position:relative} .tags-container{position:relative;min-height:400px;margin-top:12px} .tag{display:inline-block;background:var(--panel);padding:8px 12px;border-radius:999px;border:1px solid rgba(27,28,29,0.06);position:absolute;pointer-events:auto;user-select:none;will-change:transform} footer{color:var(--muted);text-align:center;margin-top:28px}</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div style="font-weight:700">Jonathan Bardolf</div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <button id="menu-btn" aria-expanded="false" aria-controls="main-nav">Menu
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform-origin:center">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <nav id="main-nav">
+          <a href="index.html"><span>Home</span></a>
+          <a href="projects.html"><span>Projects</span></a>
+          <a href="experiences.html"><span>Experiences</span></a>
+          <a href="interests.html"><span>Interests</span></a>
+          <a href="contact.html"><span>Contact</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <h1>Interests</h1>
+      <p style="color:var(--muted)">Hobbies and other areas of interest. Basically how I spend my time.</p>
+      <div class="tags-container">
+        <span class="tag">Computational Fluid Dynamics</span>
+        <span class="tag">Active Flow Control Technologies</span>
+        <span class="tag">CAD Modeling</span>
+        <span class="tag">Local AI Language Models (LLMs)</span>
+        <span class="tag">AI Prompt Engineering</span>
+        <span class="tag">Arduino & Embedded Systems</span>
+        <span class="tag">PC Building</span>
+        <span class="tag">Self-Directed Mathematics</span>
+        <span class="tag">Self-Directed Language Learning (Italian)</span>
+        <span class="tag">Peer & Family Tutoring</span>
+        <span class="tag">Amateur Video Editing</span>
+        <span class="tag">Literary Discussion Groups</span>
+        <span class="tag">Rowing</span>
+        <span class="tag">LEGO Design</span>
+        <span class="tag">Catholicism</span>
+      </div>
+    </main>
+
+    <footer>&copy; <span id="year">2026</span> — Jonathan Bardolf</footer>
+  </div>
+  <script>
+  (function(){
+    const btn = document.getElementById('menu-btn');
+    const nav = document.getElementById('main-nav');
+    if (!btn || !nav) return;
+    btn.addEventListener('click', function(e){ e.stopPropagation(); const open = nav.classList.toggle('open'); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); if (open) btn.classList.add('active'); else btn.classList.remove('active'); });
+    document.addEventListener('click', function(e){ if (!nav.contains(e.target) && e.target !== btn && nav.classList.contains('open')){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.classList.remove('active'); }});
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && nav.classList.contains('open')){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.classList.remove('active'); }});
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=>{ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.classList.remove('active'); }));
+  })();
+  document.getElementById('year').textContent=new Date().getFullYear();
+  
+  // Floating tags with cursor repulsion
+  const container = document.querySelector('.tags-container');
+  const tags = document.querySelectorAll('.tag');
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  
+  const tagStates = Array.from(tags).map((tag, i) => ({
+    tag,
+    x: Math.random() * (container.offsetWidth - 100),
+    y: Math.random() * (container.offsetHeight - 40),
+    vx: (Math.random() - 0.5) * 2,
+    vy: (Math.random() - 0.5) * 2
+  }));
+  
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+  
+  function animate() {
+    const repulsionDistance = 150;
+    const repulsionStrength = 8;
+    const friction = 0.98;
+    const speed = 0.5;
+    
+    tagStates.forEach(state => {
+      const tag = state.tag;
+      const rect = container.getBoundingClientRect();
+      const containerX = rect.left;
+      const containerY = rect.top;
+      
+      // Random wandering
+      state.vx += (Math.random() - 0.5) * 0.5;
+      state.vy += (Math.random() - 0.5) * 0.5;
+      
+      // Cursor repulsion
+      const tagCenterX = containerX + state.x + tag.offsetWidth / 2;
+      const tagCenterY = containerY + state.y + tag.offsetHeight / 2;
+      const dx = tagCenterX - mouseX;
+      const dy = tagCenterY - mouseY;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      if (distance < repulsionDistance) {
+        const angle = Math.atan2(dy, dx);
+        const force = (repulsionDistance - distance) / repulsionDistance * repulsionStrength;
+        state.vx += Math.cos(angle) * force;
+        state.vy += Math.sin(angle) * force;
+      }
+      
+      // Apply velocity
+      state.x += state.vx * speed;
+      state.y += state.vy * speed;
+      
+      // Friction
+      state.vx *= friction;
+      state.vy *= friction;
+      
+      // Boundary constraints
+      const maxX = container.offsetWidth - tag.offsetWidth;
+      const maxY = container.offsetHeight - tag.offsetHeight;
+      
+      if (state.x < 0 || state.x > maxX) state.vx *= -0.8;
+      if (state.y < 0 || state.y > maxY) state.vy *= -0.8;
+      
+      state.x = Math.max(0, Math.min(maxX, state.x));
+      state.y = Math.max(0, Math.min(maxY, state.y));
+      
+      tag.style.transform = `translate(${state.x}px, ${state.y}px)`;
+    });
+    
+    requestAnimationFrame(animate);
+  }
+  
+  animate();
+  </script>
+</body>
+</html>

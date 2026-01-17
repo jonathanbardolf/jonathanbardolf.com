@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jonathan Bardolf</title>
+  <meta name="description" content="Portfolio of Jonathan Bardolf" />
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    :root{--text:#1b1c1d;--bg-1:#f2f6f9;--bg-2:#b6bcc2;--muted:#616970;--accent:#3e464e;--panel:#ffffff}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:var(--text);background:linear-gradient(180deg,var(--bg-1),var(--bg-2));-webkit-font-smoothing:antialiased}
+    .wrap{max-width:980px;margin:0 auto;padding:24px;min-height:100vh;display:flex;flex-direction:column}
+    header{display:flex;justify-content:space-between;align-items:center;padding-top:18px;padding-bottom:8px;position:relative}
+    .name{font-weight:800;font-size:clamp(28px,5vw,44px)}
+    /* Nav */
+    /* Nav (dropdown attached to Menu button) - liquid glass style */
+    nav{position:absolute;right:24px;top:64px;display:flex;flex-direction:column;gap:6px;align-items:stretch;z-index:60;
+      width:220px;max-height:0;opacity:0;overflow:hidden;padding:0;border-radius:12px;transition:all .28s cubic-bezier(.2,.9,.2,1);
+      backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+      background:linear-gradient(180deg, rgba(255,255,255,0.78), rgba(255,255,255,0.62));
+      border:1px solid rgba(255,255,255,0.6);box-shadow:0 12px 36px rgba(27,28,29,0.06), inset 0 1px 0 rgba(255,255,255,0.6)}
+    nav.open{max-height:420px;opacity:1;padding:10px}
+    nav a{display:block;color:var(--muted);text-decoration:none;margin:0;padding:10px 12px;border-radius:8px;position:relative}
+    nav a span{position:relative;display:inline-block}
+    nav a span::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;background:var(--accent);width:0;transition:width .22s ease}
+    nav a:hover span::after, nav a:focus span::after{width:100%}
+    nav a:hover{background:rgba(27,28,29,0.02);box-shadow:0 8px 24px rgba(27,28,29,0.06)}
+    #menu-btn{display:inline-flex;gap:8px;align-items:center;border:0;background:var(--accent);color:var(--panel);padding:6px 10px;border-radius:8px;cursor:pointer;font-weight:700}
+    #menu-btn svg{color:var(--panel);transition:transform .28s cubic-bezier(.2,.9,.2,1)}
+    #menu-btn.active svg, #menu-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+
+    /* Hero fills remaining space */
+    main{flex:1;display:flex;flex-direction:column}
+    .intro{background:var(--panel);padding:28px;border-radius:12px;display:flex;flex-direction:column;justify-content:center;min-height:60vh}
+    .about{margin-top:20px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:20px}
+
+    /* Cards: entry animation, hover subtle highlight */
+    .card{background:var(--panel);padding:18px;border-radius:10px;border:1px solid rgba(27,28,29,0.06);text-decoration:none;color:inherit;opacity:0;transform:translateY(10px);animation:fadeUp .6s ease forwards;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+    .grid .card:nth-child(1){animation-delay:120ms}
+    .grid .card:nth-child(2){animation-delay:220ms}
+    .grid .card:nth-child(3){animation-delay:320ms}
+    .grid .card:nth-child(4){animation-delay:420ms}
+    @keyframes fadeUp{to{opacity:1;transform:none}}
+    .card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 12px 36px rgba(27,28,29,0.16);border-color:rgba(27,28,29,0.18)}
+
+    .card h3{margin:0 0 8px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+    .cta{display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;margin-top:12px;padding:6px 10px;background:var(--accent);color:var(--panel);border-radius:8px;text-decoration:none;font-weight:700;font-size:13px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;max-width:140px;white-space:nowrap}
+    .cta:hover{transform:translateY(-4px) scale(1.01);box-shadow:0 12px 36px rgba(27,28,29,0.16);border-color:rgba(27,28,29,0.18)}
+    footer{color:var(--muted);text-align:center;margin-top:24px;font-size:14px}
+
+    @keyframes heroIn{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:none}}
+
+    /* Responsive menu behavior */
+    @media (max-width:720px){
+      nav{right:16px;top:60px;width:200px}
+      header{padding-bottom:0}
+      .intro{min-height:calc(100vh - 120px)}
+    }
+
+    @media(max-width:520px){.wrap{padding:16px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="name">Jonathan Bardolf</div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <button id="menu-btn" aria-expanded="false" aria-controls="main-nav">Menu
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform-origin:center">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <nav id="main-nav">
+          <a href="index.html"><span>Home</span></a>
+          <a href="projects.html"><span>Projects</span></a>
+          <a href="experiences.html"><span>Academics</span></a>
+          <a href="interests.html"><span>Interests</span></a>
+          <a href="contact.html"><span>Contact</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro">
+        <h1 style="margin:0;opacity:0;transform:translateY(10px);animation:heroIn .9s ease forwards">I'm Jonathan Bardolf</h1>
+        <p class="about">Aspiring aerospace engineer with a passion for analyticial thinking and applied physics/math.</p>
+        <a class="cta" href="about.html">More about me</a>
+      </section>
+
+      <section aria-label="Quick links">
+        <div class="grid">
+          <a class="card" href="projects.html">
+            <h3>Projects</h3>
+            <p>Projects I'm currently developing, both curricular and extracurricular.</p>
+          </a>
+
+          <a class="card" href="experiences.html">
+            <h3>Academics</h3>
+            <p>My coursework, current studies, and academic foundation that I value so highly.</p>
+          </a>
+
+          <a class="card" href="interests.html">
+            <h3>Interests</h3>
+            <p>Areas of interest that I actively and wish to explore. Just a few of my hobbies and skills.</p>
+          </a>
+
+          <a class="card" href="contact.html">
+            <h3>Contact</h3>
+            <p>Feel free to reach out! I am always available and eager to connect.</p>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      &copy; <span id="year">2026</span> — Jonathan Bardolf • <a href="https://github.com/USERNAME/REPOSITORY" style="color:var(--muted);text-decoration:none">GitHub</a>
+    </footer>
+  </div>
+
+  <script>
+  (function(){
+    const btn = document.getElementById('menu-btn');
+    const nav = document.getElementById('main-nav');
+    if (!btn || !nav) return;
+    // Toggle open/close
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      const open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) btn.classList.add('active'); else btn.classList.remove('active');
+    });
+    // Close when clicking outside
+    document.addEventListener('click', function(e){
+      if (!nav.contains(e.target) && e.target !== btn && nav.classList.contains('open')){
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded','false');
+        btn.classList.remove('active');
+      }
+    });
+    // Close on Escape
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && nav.classList.contains('open')){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.classList.remove('active'); }});
+    // Close when a link is clicked
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=>{ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.classList.remove('active'); }));
+  })();
+  document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

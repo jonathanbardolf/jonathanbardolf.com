@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact — Your Site</title>
+  <meta name="description" content="Contact">
+  <link rel="icon" href="favicon.ico">
+  <style>
+    :root{--text:#1b1c1d;--bg-1:#f2f6f9;--bg-2:#b6bcc2;--muted:#616970;--accent:#3e464e;--panel:#ffffff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:var(--text);background:linear-gradient(180deg,var(--bg-1),var(--bg-2))}
+    .container{max-width:980px;margin:0 auto;padding:24px}
+    header{display:flex;justify-content:space-between;align-items:center;padding-top:18px;padding-bottom:8px;position:relative}
+    nav{position:absolute;right:24px;top:64px;display:flex;flex-direction:column;gap:6px;align-items:stretch;z-index:60;width:220px;max-height:0;opacity:0;overflow:hidden;padding:0;border-radius:12px;transition:all .28s cubic-bezier(.2,.9,.2,1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:linear-gradient(180deg, rgba(255,255,255,0.78), rgba(255,255,255,0.62));border:1px solid rgba(255,255,255,0.6);box-shadow:0 12px 36px rgba(27,28,29,0.06), inset 0 1px 0 rgba(255,255,255,0.6)}
+    nav.open{max-height:420px;opacity:1;padding:10px}
+    nav a{color:var(--muted);text-decoration:none;display:block;padding:10px 12px;border-radius:8px;position:relative}
+    nav a span{position:relative;display:inline-block}
+    nav a span::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;background:var(--accent);width:0;transition:width .22s ease}
+    nav a:hover span::after, nav a:focus span::after{width:100%}
+    nav a:hover{background:rgba(27,28,29,0.02);box-shadow:0 8px 24px rgba(27,28,29,0.06)}
+    #menu-btn{display:inline-flex;gap:8px;align-items:center;border:0;background:var(--accent);color:var(--panel);padding:6px 10px;border-radius:8px;cursor:pointer;font-weight:700}
+    #menu-btn svg{color:var(--panel);transition:transform .28s cubic-bezier(.2,.9,.2,1)}
+    #menu-btn.active svg, #menu-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+    .card{background:var(--bg-1);padding:16px;border-radius:10px;border:1px solid rgba(27,28,29,0.06)}
+
+    /* Form inputs */
+    input[type="text"],input[type="email"],textarea{
+      width:100%;margin-top:8px;padding:10px;border-radius:8px;border:1px solid rgba(27,28,29,0.12);background:transparent;color:var(--text);outline:none;transition:box-shadow .14s ease,border-color .14s ease
+    }
+    input[type="text"]::placeholder, input[type="email"]::placeholder, textarea::placeholder{color:var(--muted)}
+    input[type="text"]:focus, input[type="email"]:focus, textarea:focus{border-color:var(--accent);box-shadow:0 8px 20px rgba(27,28,29,0.06)}
+
+    /* Buttons */
+    .btn{background:var(--accent);color:var(--panel);border:none;padding:6px 10px;border-radius:8px;font-weight:700;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
+    .btn:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(27,28,29,0.16)}
+    footer{color:var(--muted);text-align:center;margin-top:28px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo"><a href="index.html" style="color:inherit;text-decoration:none;font-weight:700">Your Site</a></div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <button id="menu-btn" aria-expanded="false" aria-controls="main-nav">Menu
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform-origin:center">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <nav id="main-nav">
+          <a href="index.html"><span>Home</span></a>
+          <a href="projects.html"><span>Projects</span></a>
+          <a href="about.html"><span>About</span></a>
+          <a href="contact.html"><span>Contact</span></a>
+        </nav>
+      </div>
+    </header>
+
+     <main>
+      <section id="contact">
+  <h1>Contact</h1>
+    <p style="color:var(--muted)">Feel free to contact me using the form below!</p>
+
+    <form id="contact-form" action="https://formspree.io/f/mkoogjye" method="POST" class="card" style="margin-top:12px;display:block">
+    <label style="display:block;margin-bottom:8px">
+      Name
+      <input name="name" type="text" required placeholder="Your name">
+    </label>
+
+    <label style="display:block;margin-bottom:8px">
+      Email
+      <input name="email" type="email" required placeholder="you@example.com">
+    </label>
+
+    <label style="display:block;margin-bottom:8px">
+      Message
+      <textarea name="message" required rows="6" placeholder="Write your message"></textarea>
+    </label>
+
+    <input type="hidden" name="_subject" value="New contact from website">
+    <!-- Fallback redirect if JS is disabled: -->
+    <input type="hidden" name="_next" value="thank-you.html">
+
+    <div style="margin-top:10px;display:flex;gap:12px;align-items:center">
+      <button class="btn" type="submit">Send</button>
+      <p id="form-status" style="color:var(--muted);margin:0"></p>
+    </div>
+  </form>
+</section>
+
+    </main>
+
+    <footer>
+      &copy; <span id="year">2026</span> • <a href="https://github.com/USERNAME/REPOSITORY" style="color:var(--muted);text-decoration:none">View on GitHub</a>
+    </footer>
+  </div>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const status = document.getElementById('form-status');
+      if (status) status.textContent = 'Sending…';
+      const data = new FormData(form);
+      try {
+        const res = await fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          // Redirect to local thank-you page
+          window.location = 'thank-you.html';
+        } else {
+          const err = await res.json();
+          if (status) status.textContent = err.error || 'Submission failed.';
+        }
+      } catch (err) {
+        if (status) status.textContent = 'Network error.';
+      }
+    });
+  });
+  });
+  document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script>
+  (function(){
+    const btn = document.getElementById('menu-btn');
+    const nav = document.getElementById('main-nav');
+    if (!btn || !nav) return;
+    btn.addEventListener('click', function(e){ e.stopPropagation(); const open = nav.classList.toggle('open'); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); if (open) btn.classList.add('active'); else btn.classList.remove('active'); });
+    document.addEventListener('click', function(e){ if (!nav.contains(e.target) && e.target !== btn && nav.classList.contains('open')){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.classList.remove('active'); }});
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && nav.classList.contains('open')){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.classList.remove('active'); }});
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=>{ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.classList.remove('active'); }));
+  })();
+  </script>
+</body>
+</html>
