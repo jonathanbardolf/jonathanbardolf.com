@@ -1,4 +1,3 @@
-A little portfoilo that I made with some assistance from my good friend Claude. 
-
+My website
 
 © 2026 Jonathan Bardolf. All rights reserved.
