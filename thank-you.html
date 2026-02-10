@@ -3,25 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Thank you — Your Name</title>
+  <title>Thank you — Jonathan Bardolf</title>
   <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css" />
   <style>
-    :root{--text:#1b1c1d;--bg-1:#f2f6f9;--bg-2:#b6bcc2;--muted:#616970;--accent:#3e464e;--panel:#ffffff}
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:var(--text);background:linear-gradient(180deg,var(--bg-1),var(--bg-2));-webkit-font-smoothing:antialiased}
-    .wrap{max-width:820px;margin:60px auto;padding:28px;background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.94));border-radius:12px;border:1px solid rgba(27,28,29,0.06);text-align:center;box-shadow:0 12px 36px rgba(27,28,29,0.06)}
-    a{color:var(--accent);text-decoration:none;font-weight:700}
-    p{color:var(--muted)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;background:var(--accent);color:var(--panel);border:none;padding:6px 10px;border-radius:8px;text-decoration:none;font-weight:700;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease;white-space:nowrap}
-    .btn:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(27,28,29,0.16)}
+    a { color: var(--accent); text-decoration: none; font-weight: 700; }
+    a:hover { text-decoration: underline; }
+    p { color: var(--muted); }
   </style>
 </head>
 <body>
   <header>
     <div style="position:relative;max-width:980px;margin:18px auto 0;padding:0 24px">
       <div style="display:flex;justify-content:space-between;align-items:center">
-        <div style="font-weight:700">Your Name</div>
+        <div style="font-weight:700">Jonathan Bardolf</div>
         <div style="display:flex;gap:12px;align-items:center">
           <button id="menu-btn" aria-expanded="false" aria-controls="main-nav">Menu
             <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform-origin:center">
@@ -30,16 +25,18 @@
           </button>
           <nav id="main-nav">
             <a href="index.html"><span>Home</span></a>
+            <a href="about.html"><span>About</span></a>
             <a href="projects.html"><span>Projects</span></a>
-            <a href="experiences.html"><span>Experiences</span></a>
+            <a href="experiences.html"><span>Academics</span></a>
             <a href="interests.html"><span>Interests</span></a>
+            <a href="blog.html"><span>Blog</span></a>
             <a href="contact.html"><span>Contact</span></a>
           </nav>
         </div>
       </div>
     </div>
   </header>
-  <div class="wrap">
+  <div class="thank-you-wrap">
     <h1 style="margin-top:0">Thanks — message received</h1>
     <p>I appreciate you reaching out. I'll get back to you shortly.</p>
     <p style="margin-top:18px"><a class="btn" href="index.html">Return to homepage</a></p>

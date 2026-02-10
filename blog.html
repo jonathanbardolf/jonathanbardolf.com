@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Blog — Jonathan Bardolf</title>
+  <meta name="description" content="Blog">
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo"><a href="index.html" style="color:inherit;text-decoration:none;font-weight:700">Jonathan Bardolf</a></div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <button id="menu-btn" aria-expanded="false" aria-controls="main-nav">Menu
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform-origin:center">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <nav id="main-nav">
+          <a href="index.html"><span>Home</span></a>
+          <a href="about.html"><span>About</span></a>
+          <a href="projects.html"><span>Projects</span></a>
+          <a href="experiences.html"><span>Academics</span></a>
+          <a href="interests.html"><span>Interests</span></a>
+          <a href="blog.html"><span>Blog</span></a>
+          <a href="contact.html"><span>Contact</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="content-box">
+        <h1>Blog</h1>
+        <p style="color:var(--muted)">Thoughts, projects, and insights on aerospace engineering, software, and learning.</p>
+
+        <div style="margin-top:20px">
+          <div class="blog-post">
+            <div class="blog-title" onclick="this.nextElementSibling.classList.toggle('open'); this.querySelector('.blog-toggle').style.transform = this.nextElementSibling.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)'">
+              <h3>Blog Post Title #1</h3>
+              <span class="blog-toggle"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform-origin:center"><path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+            </div>
+            <div class="blog-content">
+              <div class="blog-content-inner">
+                <p>Add your blog post content here. Write about your projects, learnings, or any topic you're passionate about!</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="blog-post">
+            <div class="blog-title" onclick="this.nextElementSibling.classList.toggle('open'); this.querySelector('.blog-toggle').style.transform = this.nextElementSibling.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)'">
+              <h3>Blog Post Title #2</h3>
+              <span class="blog-toggle"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform-origin:center"><path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+            </div>
+            <div class="blog-content">
+              <div class="blog-content-inner">
+                <p>Add your blog post content here. Share your experiences and knowledge with your visitors.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="blog-post">
+            <div class="blog-title" onclick="this.nextElementSibling.classList.toggle('open'); this.querySelector('.blog-toggle').style.transform = this.nextElementSibling.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)'">
+              <h3>Blog Post Title #3</h3>
+              <span class="blog-toggle"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform-origin:center"><path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+            </div>
+            <div class="blog-content">
+              <div class="blog-content-inner">
+                <p>Add your blog post content here. This is a great place to dive deep into topics you care about.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      &copy; <span id="year">2026</span> — Jonathan Bardolf
+    </footer>
+  </div>
+  <script>
+  (function(){
+    const btn = document.getElementById('menu-btn');
+    const nav = document.getElementById('main-nav');
+    if (!btn || !nav) return;
+    btn.addEventListener('click', function(e){ e.stopPropagation(); const open = nav.classList.toggle('open'); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); if (open) btn.classList.add('active'); else btn.classList.remove('active'); });
+    document.addEventListener('click', function(e){ if (!nav.contains(e.target) && e.target !== btn && nav.classList.contains('open')){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.classList.remove('active'); }});
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && nav.classList.contains('open')){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.classList.remove('active'); }});
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=>{ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.classList.remove('active'); }));
+  })();
+  document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
