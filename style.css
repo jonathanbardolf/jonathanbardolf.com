@@ -29,7 +29,7 @@ body {
 .wrap {
   max-width: 980px;
   margin: 0 auto;
-  padding: 24px;
+  padding: 40px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -38,7 +38,7 @@ body {
 .container {
   max-width: 980px;
   margin: 0 auto;
-  padding: 24px;
+  padding: 40px;
   background: transparent;
 }
 
@@ -90,7 +90,7 @@ nav.open {
 
 nav a {
   display: block;
-  color: var(--muted);
+  color: var(--text);
   text-decoration: none;
   margin: 0;
   padding: 10px 12px;
@@ -123,6 +123,16 @@ nav a:focus span::after {
 nav a:hover {
   background: rgba(26, 23, 17, 0.02);
   box-shadow: 0 8px 24px rgba(26, 23, 17, 0.06);
+}
+
+nav a.active {
+  background: rgba(149, 107, 69, 0.12);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+nav a.active span::after {
+  width: 100%;
 }
 
 /* Menu Button */
@@ -267,6 +277,28 @@ main {
   100% {
     opacity: 1;
     transform: none;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-10px);
   }
 }
 
@@ -550,6 +582,117 @@ textarea:focus {
   box-shadow: 0 12px 36px rgba(26, 23, 17, 0.06);
 }
 
+/* Mobile Button - Compact Layout Toggle */
+.mobile-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  width: 48px;
+  height: 48px;
+  background: var(--accent);
+  color: var(--panel);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 50;
+  box-shadow: 0 4px 12px rgba(26, 23, 17, 0.2);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.mobile-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--panel);
+  fill: none;
+}
+
+.mobile-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(26, 23, 17, 0.25);
+}
+
+.mobile-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 8px rgba(26, 23, 17, 0.15);
+}
+
+/* Compact Mobile View Mode */
+body.compact-view {
+  --compact-padding: 16px;
+}
+
+body.compact-view .wrap,
+body.compact-view .container {
+  padding: 20px 12px;
+  max-width: 100%;
+}
+
+body.compact-view .content-box {
+  margin: 16px 0;
+  padding: 16px;
+}
+
+body.compact-view header {
+  padding-top: 12px;
+  padding-bottom: 4px;
+}
+
+body.compact-view .name {
+  font-size: clamp(20px, 4vw, 32px);
+}
+
+body.compact-view nav {
+  width: 160px;
+}
+
+body.compact-view .grid {
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+body.compact-view .intro {
+  min-height: auto;
+  padding: 16px;
+}
+
+body.compact-view .cards {
+  grid-template-columns: 1fr;
+}
+
+body.compact-view .skills-sections-wrapper {
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+body.compact-view .tags-container {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+body.compact-view h1 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+body.compact-view h2 {
+  font-size: 18px;
+  margin-top: 16px !important;
+  margin-bottom: 8px !important;
+}
+
+body.compact-view .item {
+  padding: 12px;
+  margin-bottom: 8px;
+}
+
+body.compact-view footer {
+  margin-top: 16px;
+  font-size: 12px;
+}
+
 /* Footer */
 footer {
   color: var(--muted);
@@ -586,21 +729,22 @@ footer a:hover {
   }
 
   .wrap {
-    padding: 16px;
+    padding: 32px 20px;
   }
 
   .container {
-    padding: 16px;
+    padding: 32px 20px;
   }
 
 }
 
 @media (max-width: 520px) {
   .wrap {
-    padding: 16px;
+    padding: 28px 16px;
   }
 
   .container {
-    padding: 16px;
+    padding: 28px 16px;
   }
+
 }

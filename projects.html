@@ -51,23 +51,59 @@
           <p style="color:var(--muted);margin-top:8px">Short description.</p>
           <p style="margin-top:10px"><a href="#" style="color:var(--accent)">View</a></p>
         </div>
+        <div class="card">
+          <strong>Project Four</strong>
+          <p style="color:var(--muted);margin-top:8px">Short description and link to the repository or demo.</p>
+          <p style="margin-top:10px"><a href="#" style="color:var(--accent)">View</a></p>
+        </div>
         </div>
       </div>
     </main>
 
     <footer>
-      &copy; <span id="year">2026</span> — Jonathan Bardolf
     </footer>
   </div>
+  <button class="mobile-btn" id="mobile-menu-btn" aria-label="Toggle compact view" title="Compact view">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke-width="1.5"/>
+      <line x1="9" y1="20" x2="15" y2="20" stroke-width="1.5"/>
+    </svg>
+  </button>
   <script>
   (function(){
     const btn = document.getElementById('menu-btn');
+    const mobileBtn = document.getElementById('mobile-menu-btn');
     const nav = document.getElementById('main-nav');
     if (!btn || !nav) return;
-    btn.addEventListener('click', function(e){ e.stopPropagation(); const open = nav.classList.toggle('open'); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); if (open) btn.classList.add('active'); else btn.classList.remove('active'); });
-    document.addEventListener('click', function(e){ if (!nav.contains(e.target) && e.target !== btn && nav.classList.contains('open')){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.classList.remove('active'); }});
+
+    function toggleMenu(e){ e.stopPropagation(); const open = nav.classList.toggle('open'); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); if (open) btn.classList.add('active'); else btn.classList.remove('active'); }
+
+    btn.addEventListener('click', toggleMenu);
+
+    if (mobileBtn) {
+      mobileBtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        document.body.classList.toggle('compact-view');
+        localStorage.setItem('compactView', document.body.classList.contains('compact-view'));
+      });
+    }
+
+    document.addEventListener('click', function(e){ if (!nav.contains(e.target) && e.target !== btn && e.target !== mobileBtn && nav.classList.contains('open')){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.classList.remove('active'); }});
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && nav.classList.contains('open')){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.classList.remove('active'); }});
     nav.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=>{ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.classList.remove('active'); }));
+
+    if (localStorage.getItem('compactView') === 'true') {
+      document.body.classList.add('compact-view');
+    }
+
+    // Mark current page as active
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    nav.querySelectorAll('a').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+        link.classList.add('active');
+      }
+    });
   })();
   document.getElementById('year').textContent = new Date().getFullYear();
   </script>
