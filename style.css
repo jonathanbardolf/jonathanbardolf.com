@@ -490,13 +490,40 @@ textarea:focus {
 }
 
 .blog-content.open {
-  max-height: 1000px;
+  max-height: 2400px;
 }
 
 .blog-content-inner {
   padding: 20px;
-  color: var(--muted);
+  color: #6b6358;
   line-height: 1.6;
+}
+
+.img-spoiler-btn {
+  background: none;
+  border: 1px solid rgba(26, 23, 17, 0.15);
+  border-radius: 6px;
+  padding: 6px 14px;
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 14px;
+  font-family: Georgia, Garamond, 'Times New Roman', serif;
+  transition: all 0.22s ease;
+  margin-top: 12px;
+}
+
+.img-spoiler-btn:hover {
+  background: var(--bg-2);
+}
+
+.img-spoiler-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.img-spoiler.open .img-spoiler-content {
+  max-height: 500px;
 }
 
 /* Skills Grid */
